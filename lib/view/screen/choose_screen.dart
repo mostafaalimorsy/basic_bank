@@ -16,7 +16,7 @@ class ChooseScreen extends StatelessWidget {
           borderRadius: BorderRadius.circular(20),
         ),
       ),
-      body: choose(context),
+      body: SingleChildScrollView(child: choose(context)),
     );
   }
 }

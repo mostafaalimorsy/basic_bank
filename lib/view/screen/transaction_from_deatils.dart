@@ -1,141 +1,29 @@
+import 'package:basic_bank/controller/cubit/cubit.dart';
+import 'package:basic_bank/controller/cubit/states.dart';
 import 'package:basic_bank/view/screen/transfare_to_balance_screen.dart';
 import 'package:basic_bank/view/utalites/componans.dart';
 import 'package:basic_bank/view/utalites/constant.dart';
 import 'package:basic_bank/view/widget/appbar_widget.dart';
 import 'package:basic_bank/view/widget/custom_operation_button.dart';
+import 'package:basic_bank/view/widget/transaction_from_deatils_widget.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class TransactionFromDeatils extends StatelessWidget {
   const TransactionFromDeatils({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: appBar(title: 'Account Deatils'),
-      body: Center(
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Card(
-                color: defaultColor,
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20.0)),
-                child: Container(
-                  height: 550,
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Image.asset(
-                          "assets/2.png",
-                          height: 300,
-                        ),
-                        space(context),
-                        //name
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Text(
-                              "Name: ",
-                              style: TextStyle(fontSize: 22),
-                            ),
-                            Text(
-                              "Mostafa Morsy ",
-                              style: TextStyle(fontSize: 22),
-                            ),
-                          ],
-                        ),
-                        //mobile
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Text(
-                              "Mobile: ",
-                              style: TextStyle(fontSize: 22),
-                            ),
-                            Text(
-                              "01200000000 ",
-                              style: TextStyle(fontSize: 22),
-                            ),
-                          ],
-                        ),
-                        //email
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Text(
-                              "Email: ",
-                              style: TextStyle(fontSize: 22),
-                            ),
-                            Text(
-                              "test@gmail.com ",
-                              style: TextStyle(fontSize: 22),
-                            ),
-                          ],
-                        ),
-                        //account number
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Text(
-                              "Account Number: ",
-                              style: TextStyle(fontSize: 22),
-                            ),
-                            Text(
-                              "100004551545 ",
-                              style: TextStyle(fontSize: 22),
-                            ),
-                          ],
-                        ),
-                        // ifsc code
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Text(
-                              "IFSC Code: ",
-                              style: TextStyle(fontSize: 22),
-                            ),
-                            Text(
-                              "217 ",
-                              style: TextStyle(fontSize: 22),
-                            ),
-                          ],
-                        ),
-                        //current balance
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Text(
-                              "Current Balance: ",
-                              style: TextStyle(fontSize: 22),
-                            ),
-                            Text(
-                              "1.000.000.000 ",
-                              style: TextStyle(fontSize: 22),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: operationButton(
-                  onpressed: (){
-                    navigatTo(context, TransfareToBalanceScreen());
-                  },
-                    buttonText: 'Transact Mony', context: context),
-              ),
-            ],
-          ),
-        ),
-      ),
+    return BlocConsumer <AppCubit , TransfareAppStates> (
+      listener: (BuildContext context, state) {  },
+      builder: (BuildContext context, TransfareAppStates state) {
+        AppCubit getData = AppCubit.get(context);
+        return Scaffold(
+          appBar: appBar(title: 'Account Deatils'),
+          body: transformDeatilsFrom(getData.bankList[getData.indextranformFrom],context),
+        );
+      },
     );
   }
 }

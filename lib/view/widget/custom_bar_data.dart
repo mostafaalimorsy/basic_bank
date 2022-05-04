@@ -1,7 +1,7 @@
 import 'package:basic_bank/view/utalites/constant.dart';
 import 'package:flutter/material.dart';
 
-Widget barData({VoidCallback? onTap}) =>Padding(
+Widget barData( Map model , context) =>Padding(
   padding: const EdgeInsets.all(8.0),
   child: Card(
     color: defaultColor,
@@ -16,18 +16,18 @@ Widget barData({VoidCallback? onTap}) =>Padding(
       ),
       title: Row(
         children: [
-          Text("Full Name"),
+          Text("${model['fullName']}"),
         ],
       ),
       subtitle: Row(
         children: [
-          Text("Balance"),
-          Text("1000000000.00"),
+          Text("Balance : "),
+          Text("${model['balance']}"),
         ],
       ),
       trailing: IconButton(
         icon: Icon(Icons.arrow_forward_ios),
-        onPressed: onTap,
+        onPressed: (){},
       ),
     ),
   ),

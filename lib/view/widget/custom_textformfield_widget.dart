@@ -22,7 +22,7 @@ Widget defaultTextForm({
       keyboardType: type,
       validator: (String? value) {
         if (value!.isEmpty) {
-          return '${msg}';
+          return '$msg';
         }
       },
       decoration: InputDecoration(
